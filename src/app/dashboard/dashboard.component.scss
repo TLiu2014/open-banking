@@ -6,3 +6,15 @@
         max-width: 400px;
       }
 }
+#cashflow-container {
+    .axis--x path {
+    //display: none;
+    }
+    
+    ::ng-deep.line {
+        fill: none;
+        stroke: steelblue;
+        stroke-width: 1.5px;
+    }
+}
+    
