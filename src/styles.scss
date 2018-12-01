@@ -1,1 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';body {
+    font: normal 16px Arial, Helvetica, sans-serif;
+}
+h1 {
+    font: normal 2rem  Arial, Helvetica, sans-serif;
+}
+
+h2 {
+    font: 1.5rem  Arial, Helvetica, sans-serif;
+}
+
+h3 {
+    font: 1.25rem  Arial, Helvetica, sans-serif;
+}
+
+h4 {
+    font: 1rem  Arial, Helvetica, sans-serif;
+}
+p {
+    font: 1rem  Arial, Helvetica, sans-serif;
+}

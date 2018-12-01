@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 const httpOptions = {
   headers: new HttpHeaders({
-    // 'Content-Type':  'application/json', 
+    // 'Content-Type':  'application/json',
     'Ocp-Apim-Subscription-Key': '5b47e3170d1b42688dbe1474941f4060'
   })
 };
