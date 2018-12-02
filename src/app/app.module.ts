@@ -6,10 +6,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CustomerComponent } from './customer/customer.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-
-import {MatCardModule, MatTableModule, MatButtonModule, MatDividerModule} from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatCardModule, MatTableModule, MatButtonModule, MatDividerModule, MatFormFieldModule, MatInputModule,
+  MatDatepickerModule, MatNativeDateModule} from '@angular/material';
 import { AddgoalComponent } from './addgoal/addgoal.component';
-import { MatFormFieldModule } from '@angular/material/form-field';
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,15 +19,19 @@ import { MatFormFieldModule } from '@angular/material/form-field';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
     MatCardModule,
     MatFormFieldModule,
+    MatDatepickerModule,
+    MatNativeDateModule ,
     MatTableModule,
     MatButtonModule,
     MatDividerModule,
+    MatInputModule,
   ],
-  providers: [],
+  providers: [MatDatepickerModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

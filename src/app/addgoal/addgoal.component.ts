@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-//import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 
 
 @Component({
@@ -8,16 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./addgoal.component.scss']
 })
 export class AddgoalComponent implements OnInit {
-  //form: FormGroup;
-  //constructor(private formBuilder: FormBuilder ) {  }
+  constructor() {  }
 
-  ngOnInit() {
-    //this.form = this.formBuilder.group({
-    //name: new FormControl(null, Validators.required),
-    //amount: new FormControl(null, Validators.required)});
-  
-}
-
-  
-  
+  ngOnInit() { }
 }
