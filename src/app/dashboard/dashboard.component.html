@@ -1,6 +1,7 @@
 <div fxLayout="row flex" fxLayoutAlign="space-around center"  id="dashboard-container" >
   <h1>Goal Spending Manager</h1>
   <p>description</p>
+  <mat-divider></mat-divider>
   <div fxLayout="row flex" fxLayoutAlign="start start" fxFlex="100" id="goals-container" >
     <h2>Goals</h2>
     <!-- <div fxLayout="column" fxFlex="33" fxFlex.sm="50" fxFlex.xs="100" class="goal-item" *ngFor=";let ind = index">
@@ -20,13 +21,13 @@
     <div fxFlex="33" fxFlex.sm="50" fxFlex.xs="100">
       <mat-card class="example-card">
         <mat-card-header>
-          <div mat-card-avatar class="example-header-image"></div>
-          <mat-card-title>Goal name</mat-card-title>
+          <!-- <div mat-card-avatar class="example-header-image"></div> -->
+          <mat-card-title>Buy a scooter</mat-card-title>
           <!-- <mat-card-subtitle></mat-card-subtitle> -->
         </mat-card-header>
         <mat-card-content>
           <p>
-            $2000
+            $2,000
           </p>
         </mat-card-content>
         <!-- <mat-card-actions>
@@ -37,8 +38,40 @@
     </div>
     
   </div>
+  <mat-divider></mat-divider>
   <div fxLayout="row flex" fxLayoutAlign="space-around center" fxFlex="100" id="cashflow-container" >
-    <h2>Cashflow</h2>
+    <h2>Transactions</h2>
     <svg width="1200" height="500"></svg>
+    <button mat-raised-button color="primary" (click)="toggleShowTable()">{{ showTable ? 'Hide' : 'Show' }} all transactions</button>
+    <table *ngIf="showTable" mat-table [dataSource]="showTransactions" class="mat-elevation-z8">
+        <ng-container matColumnDef="transaction_id">
+          <th mat-header-cell *matHeaderCellDef> Transaction ID </th>
+          <td mat-cell *matCellDef="let element"> {{element.transaction_id}} </td>
+        </ng-container>
+        
+        <ng-container matColumnDef="transaction_date">
+          <th mat-header-cell *matHeaderCellDef> Date </th>
+          <td mat-cell *matCellDef="let element"> {{element.transaction_date.substr(0,10)}} </td>
+        </ng-container>
+        
+        <ng-container matColumnDef="transaction_value">
+          <th mat-header-cell *matHeaderCellDef> Value </th>
+          <td mat-cell *matCellDef="let element"> {{(element.type === 'CREDIT' ? -1 : 1) *  element.transaction_value}} </td>
+        </ng-container>
+        
+        <ng-container matColumnDef="description">
+          <th mat-header-cell *matHeaderCellDef> Description </th>
+          <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="account_id">
+          <th mat-header-cell *matHeaderCellDef> Account ID </th>
+          <td mat-cell *matCellDef="let element"> {{element.account_id}} </td>
+        </ng-container>
+      
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+      
   </div>
 </div>

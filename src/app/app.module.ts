@@ -6,7 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CustomerComponent } from './customer/customer.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import {MatCardModule} from '@angular/material';
+import {MatCardModule, MatTableModule, MatButtonModule, MatDividerModule} from '@angular/material';
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,6 +18,9 @@ import {MatCardModule} from '@angular/material';
     AppRoutingModule,
     HttpClientModule,
     MatCardModule,
+    MatTableModule,
+    MatButtonModule,
+    MatDividerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

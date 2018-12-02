@@ -6,7 +6,6 @@ import * as d3ScaleChromatic from 'd3-scale-chromatic';
 import * as d3Shape from 'd3-shape';
 import * as d3Array from 'd3-array';
 import * as d3Axis from 'd3-axis';
-import { transition } from '@angular/animations';
 const httpOptions = {
   headers: new HttpHeaders({
     // 'Content-Type':  'application/json',
@@ -23,6 +22,7 @@ export class DashboardComponent implements OnInit {
 
   // charts
   title = 'Multi-Series Line Chart';
+  displayedColumns: string[] = ['transaction_id', 'description', 'transaction_date', 'transaction_value', 'account_id'];
 
   data: any;
 
@@ -39,12 +39,19 @@ export class DashboardComponent implements OnInit {
   /* demo customer & account info*/
   customerId = '1';
   accounts: any[];
-  transitions: any[];
+  transactions: any[];
+  showTransactions: any[];
+  showTable: boolean;
   constructor(private http: HttpClient) {
+  }
+  toggleShowTable() {
+    this.showTable = !this.showTable;
   }
 
   ngOnInit() {
+    this.showTable = false;
     this.TEMPERATURES = [];
+    this.showTransactions = [];
     this.http.get('https://api.azureminilab.com/customers/' + this.customerId + '/accounts', httpOptions)
       .subscribe(res => {
         this.accounts = res as any[];
@@ -52,20 +59,22 @@ export class DashboardComponent implements OnInit {
         console.log('Accounts', this.accounts);
         this.accounts.forEach(e => {
           this.http.get('https://api.azureminilab.com/accounts/' + e.id + '/transactions', httpOptions).subscribe(resp => {
-            this.transitions = resp as any[];
-            this.transitions.sort((a, b) => a.transaction_date.substr(0, 10) < b.transaction_date.substr(0, 10) ? -1 : 1);
-            console.log(e.id, this.transitions);
-            const data = this.transitions.map(r => {
+            this.transactions = resp as any[];
+            this.showTransactions = [...this.showTransactions, ...this.transactions];
+            this.transactions.sort((a, b) => a.transaction_date.substr(0, 10) < b.transaction_date.substr(0, 10) ? -1 : 1);
+            this.showTransactions.sort((a, b) => a.transaction_date.substr(0, 10) < b.transaction_date.substr(0, 10) ? -1 : 1);
+            console.log(e.id, this.transactions);
+            const data = this.transactions.map(r => {
               return {'date': new Date(r.transaction_date), 'temperature':
               ((r.type === 'CREDIT' ? -1 : 1) * parseFloat(r.transaction_value))};
             });
             console.log(e.id, data);
             this.TEMPERATURES.push(
               {
-                  'id': e.label,
+                  'id': e.type,
                   'values': data
               });
-              this.data = data.map((v) => v.date );
+              this.data = data.map(v => v.date );
               if (this.TEMPERATURES.length === this.accounts.length) {
                 this.createChart();
               }
@@ -84,9 +93,7 @@ export class DashboardComponent implements OnInit {
   }
 
   createChart(): void {
-
-    // this.data = data;
-    console.log('dates', this.data);
+    // console.log('dates', this.data);
     this.initChart();
     this.drawAxis();
     if (this.data !== undefined || this.data.length !== 0) {
@@ -138,7 +145,7 @@ private drawAxis(): void {
 }
 
 private drawPath(): void {
-    let city = this.g.selectAll('.city')
+    const city = this.g.selectAll('.city')
         .data(this.TEMPERATURES)
         .enter().append('g')
         .attr('class', 'city');

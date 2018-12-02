@@ -2,8 +2,14 @@
     margin: 10px 30px;
 }
 #goals-container{
+
+    margin: 20px 0;
     .example-card {
         max-width: 400px;
+        min-height: 150px;
+      }
+      ::ng-deep h1, h3, h2, h4, p {
+          text-align: left;
       }
 }
 #cashflow-container {
@@ -15,6 +21,10 @@
         fill: none;
         stroke: steelblue;
         stroke-width: 1.5px;
+    }
+    table {
+        margin: 20px 10px;
+        width: 100%;
     }
 }
     
