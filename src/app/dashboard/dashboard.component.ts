@@ -22,7 +22,7 @@ export class DashboardComponent implements OnInit {
 
   // charts
   title = 'Multi-Series Line Chart';
-  displayedColumns: string[] = ['transaction_id', 'description', 'transaction_date', 'transaction_value', 'account_id'];
+  displayedColumns: string[] = ['transaction_id', 'description', 'transaction_date', 'transaction_value', 'account_id', 'type'];
 
   data: any;
 
