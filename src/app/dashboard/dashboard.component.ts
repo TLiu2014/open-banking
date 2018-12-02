@@ -42,14 +42,19 @@ export class DashboardComponent implements OnInit {
   transactions: any[];
   showTransactions: any[];
   showTable: boolean;
+  showAddgoal: boolean;
   constructor(private http: HttpClient) {
   }
   toggleShowTable() {
     this.showTable = !this.showTable;
   }
+  toggleShowAddgoal() {
+    this.showAddgoal = !this.showAddgoal;
+  }
 
   ngOnInit() {
     this.showTable = false;
+    this.showAddgoal = false;
     this.TEMPERATURES = [];
     this.showTransactions = [];
     this.http.get('https://api.azureminilab.com/customers/' + this.customerId + '/accounts', httpOptions)
