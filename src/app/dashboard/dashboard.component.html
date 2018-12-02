@@ -1,14 +1,15 @@
 
-  <img src="../../assets/header.png"/>
+  <img id="header-img" src="../../assets/header.png"/>
+  <!-- <img id="sidebar-img" src="../../assets/left-side-bar.png"/> -->
   <div fxLayout="row flex" fxLayoutAlign="space-around center" fxFlex="100" id="add-goal-container" >
-    <button mat-raised-button color="primary" (click)="toggleShowAddgoal()">{{ showAddgoal ? 'Cancel' : 'Add a goal' }}</button>
-    <app-addgoal *ngIf="showAddgoal"></app-addgoal>
+    <button id="add-btn"mat-raised-button color="primary" (click)="openDialog()">{{ showAddgoal ? 'Cancel' : 'Add a goal' }}</button>
+    <!-- <app-addgoal *ngIf="showAddgoal"></app-addgoal> -->
   </div>
-  <div fxLayout="row flex" fxLayoutAlign="space-around center"  *ngIf="!showAddgoal" id="dashboard-container" >
+  <div fxLayout="row flex" fxLayoutAlign="space-around center"fxFlex="100" id="dashboard-container" >
   <h1>Goal Spending Manager</h1>
   <p>description</p>
   <mat-divider></mat-divider>
-  <div fxLayout="row flex" fxLayoutAlign="start start" fxFlex="100" id="goals-container" >
+  <div fxLayout="row flex" fxLayoutAlign="space-around center" fxFlex="100" id="goals-container" >
     <h2>Goals</h2>
     <!-- <div fxLayout="column" fxFlex="33" fxFlex.sm="50" fxFlex.xs="100" class="goal-item" *ngFor=";let ind = index">
       <div class="goal-content checkbox-container" id="goal-card-inner-{{goal.goalId}}" fxLayout="column">

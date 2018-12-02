@@ -6,6 +6,7 @@ import * as d3ScaleChromatic from 'd3-scale-chromatic';
 import * as d3Shape from 'd3-shape';
 import * as d3Array from 'd3-array';
 import * as d3Axis from 'd3-axis';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 const httpOptions = {
   headers: new HttpHeaders({
     // 'Content-Type':  'application/json',
@@ -43,13 +44,24 @@ export class DashboardComponent implements OnInit {
   showTransactions: any[];
   showTable: boolean;
   showAddgoal: boolean;
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,
+    public dialog: MatDialog) {
   }
   toggleShowTable() {
     this.showTable = !this.showTable;
   }
   toggleShowAddgoal() {
     this.showAddgoal = !this.showAddgoal;
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(AddDialog, {
+      width: '500px',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
   }
 
   ngOnInit() {
@@ -169,5 +181,19 @@ private drawPath(): void {
         .style('font', '10px sans-serif')
         .text(function(d) { return d.id; });
 }
+
+}
+@Component({
+  selector: 'app-add-dialog',
+  templateUrl: 'add-dialog.html',
+})
+export class AddDialog {
+
+  constructor(
+    public dialogRef: MatDialogRef<AddDialog>) {}
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
 
 }

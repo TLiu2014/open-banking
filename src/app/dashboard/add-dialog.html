@@ -1,0 +1,8 @@
+<h1 mat-dialog-title></h1>
+<div mat-dialog-content>
+    <app-addgoal></app-addgoal>
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button (click)="onNoClick()">Cancel</button>
+  <button mat-raised-button color="primary" [mat-dialog-close]="" cdkFocusInitial>Set up a Goal</button>
+</div>

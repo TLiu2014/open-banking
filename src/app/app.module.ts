@@ -5,10 +5,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CustomerComponent } from './customer/customer.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { DashboardComponent, AddDialog } from './dashboard/dashboard.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatCardModule, MatTableModule, MatButtonModule, MatDividerModule, MatFormFieldModule, MatInputModule,
-  MatDatepickerModule, MatNativeDateModule} from '@angular/material';
+  MatDatepickerModule, MatNativeDateModule, 
+  MatDialogModule} from '@angular/material';
 import { AddgoalComponent } from './addgoal/addgoal.component';
 @NgModule({
   declarations: [
@@ -16,11 +17,18 @@ import { AddgoalComponent } from './addgoal/addgoal.component';
     CustomerComponent,
     DashboardComponent,
     AddgoalComponent,
+    AddDialog
+  ],
+
+  entryComponents: [
+    AddDialog
   ],
   imports: [
+    // AddDialog,
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    MatDialogModule,
     HttpClientModule,
     MatCardModule,
     MatFormFieldModule,
